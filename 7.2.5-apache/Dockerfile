@@ -80,6 +80,12 @@ RUN apt-get update \
 RUN apt-get update \
   && apt-get install unixodbc-dev
 
+# Install PHP SOAP extension
+RUN rm /etc/apt/preferences.d/no-debian-php \
+ && apt-get update -yqq \
+ && apt-get -y install libxml2-dev php-soap \
+ && docker-php-ext-install soap \
+
 RUN set -x \
     && docker-php-source extract \
     && cd /usr/src/php/ext/odbc \
