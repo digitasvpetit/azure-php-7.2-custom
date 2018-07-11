@@ -143,9 +143,3 @@ ENV PATH ${PATH}:/home/site/wwwroot
 WORKDIR /var/www/html
 
 ENTRYPOINT ["/bin/init_container.sh"]
-
-
-
-rm /etc/apt/preferences.d/no-debian-php && apt-get update -yqq && apt-get -y install libxml2-dev php-soap && docker-php-ext-install soap RUN set -x && docker-php-source extract && cd /usr/src/php/ext/odbc && phpize && sed -ri 's@^ *test +"\$PHP_.*" *= *"no" *&& *PHP_.*=yes *$@#&@g' configure && ./configure --with-unixODBC=shared,/usr && docker-php-ext-install odbc
-
-rm /etc/apt/preferences.d/no-debian-php && \ apt-get update -yqq && \ apt-get -y install libxml2-dev php-soap && \ docker-php-ext-install soap \
